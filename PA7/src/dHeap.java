@@ -1,16 +1,17 @@
 /*
- * Name: TODO
- * PID:  TODO
+ * Name: William Chou
+ * PID:  A17830823
  */
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.NoSuchElementException;
 
 /**
  * Title: dHeap Description: This program creates a Heap with d branching factor
  *
- * @author TODO
- * @since TODO
+ * @author William Chou
+ * @since 2024-5-21
  *
  * @param <T> the type of elements held in this collection
  */
@@ -20,14 +21,19 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
     private T[] heap;   // backing array
     private int d;      // branching factor
     private int nelems; // number of elements
-    private boolean isMaxHeap; // indicates whether heap is max or min
+    private boolean isMaxHeap; // indicates whether heap is max or
+
+    private int heapSize; // size of heap
+
+    private static final int DEFAULT_SIZE = 10; // default size for constructor
 
     /**
      * Initializes a binary max heap with capacity = 10
      */
     @SuppressWarnings("unchecked")
     public dHeap() {
-        // TODO
+        heapSize = DEFAULT_SIZE;
+        heap = (T[]) new Comparable[DEFAULT_SIZE];
     }
 
     /**
@@ -37,7 +43,8 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
      */
     @SuppressWarnings("unchecked")
     public dHeap(int heapSize) {
-        // TODO
+        this.heapSize = heapSize;
+        heap = (T[]) new Comparable[heapSize];
     }
 
     /**
@@ -51,36 +58,48 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
      */
     @SuppressWarnings("unchecked")
     public dHeap(int d, int heapSize, boolean isMaxHeap) throws IllegalArgumentException {
-        // TODO
+        this.d = d;
+        this.isMaxHeap = isMaxHeap;
+        this.heapSize = heapSize;
+        heap = (T[]) new Comparable[heapSize];
     }
 
     @Override
     public int size() {
-        // TODO
-        return 0;
+        return nelems;
     }
 
     @Override
     public T remove() throws NoSuchElementException {
-        // TODO
-        return null;
+        if (this.size() == 0) {
+            throw new NoSuchElementException();
+        } else {
+            return null;
+        }
     }
 
     @Override
     public void add(T item) throws NullPointerException {
-        // TODO
+        if (item == null) {
+            throw new NullPointerException();
+        } else {
+            return;
+        }
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public void clear() {
-        // TODO
+        heap = (T[]) new Comparable[heapSize];
     }
 
     @Override
     public T element() throws NoSuchElementException {
-        // TODO
-        return null;
+        if (this.size() == 0) {
+            throw new NoSuchElementException();
+        } else {
+            return null;
+        }
     }
 
     private int parent(int index) {
