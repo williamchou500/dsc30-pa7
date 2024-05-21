@@ -24,6 +24,11 @@ public class Worksheet {
         TODO: store the values with the heap's array representations for each removal iteration
          */
         int[][] output = new int[5][12];
+        output[0] = new int[] {19, 38, 21, 39, 42, 74, 30, 47, 50, 54, 44, 0};
+        output[1] = new int[] {21, 38, 30, 39, 42, 74, 44, 47, 50, 54, 0, 0};
+        output[2] = new int[] {30, 38, 44, 39, 42, 74, 54, 47, 50, 0, 0, 0};
+        output[3] = new int[] {38, 39, 44, 47, 42, 74, 54, 50, 0, 0, 0, 0};
+        output[4] = new int[] {39, 42, 44, 47, 50, 74, 54, 0, 0, 0, 0, 0};
         return output;
     }
 
@@ -36,6 +41,8 @@ public class Worksheet {
         TODO: store 3-ary heap's array representation output[0] and store 4-ary representation in output[1]
          */
         int[][] output = new int[2][11];
+        output[0] = new int[] {79, 43, 65, 25, 27, 33, 38, 36, 60, 11, 4};
+        output[1] = new int[] {79, 65, 36, 25, 27, 33, 38, 43, 60, 11, 4};
         return output;
     }
 
@@ -48,6 +55,12 @@ public class Worksheet {
         TODO: store heap's array status after multiples operations - operation i will be stored at index i-1
          */
         int[][] output = new int[5][12];
+        output[0] = new int[] {52, 50, 35, 39, 45, 17, 27, 10, 15, 0, 0, 0};
+        output[1] = new int[] {100, 50, 35, 52, 45, 17, 27, 10, 15, 15, 39, 0};
+        output[2] = new int[] {52, 50, 35, 39, 45, 17, 27, 10, 15, 15, 0, 0};
+        output[3] = new  int[] {88, 50, 35, 72, 45, 17, 27, 10, 15, 15, 34, 52};
+        output[4] = new int[] {39, 25, 35, 10, 15, 17, 15, 0, 0, 0, 0, 0};
+
         return output;
     }
 }
