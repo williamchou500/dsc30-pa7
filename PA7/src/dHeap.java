@@ -46,10 +46,14 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
      */
     @SuppressWarnings("unchecked")
     public dHeap(int heapSize) {
-        this.heapSize = heapSize;
-        isMaxHeap = true;
-        d = 2;
-        heap = (T[]) new Comparable[heapSize];
+        if (heapSize <= 0) {
+            throw new IllegalArgumentException();
+        } else {
+            this.heapSize = heapSize;
+            isMaxHeap = true;
+            d = 2;
+            heap = (T[]) new Comparable[heapSize];
+        }
     }
 
     /**
@@ -174,9 +178,12 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
 
         if (isMaxHeap) {
             for (int i = 1; i < d; i++) {
-                if (heap[childrenIndexes[i]].compareTo(valueToSwap) > 0) {
-                    indexToSwap = childrenIndexes[i];
-                    valueToSwap = heap[childrenIndexes[i]];
+                int currIndex = childrenIndexes[i];
+                T currValue = heap[currIndex];
+
+                if (currValue.compareTo(valueToSwap) > 0 && currIndex < nelems) {
+                    indexToSwap = currIndex;
+                    valueToSwap = currValue;
                 }
             }
             if (heap[index].compareTo(valueToSwap) >= 0) {
@@ -188,11 +195,14 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
 
                 trickleDown(indexToSwap);
             }
-        } else {
+        } else if (!isMaxHeap) {
             for (int i = 1; i < d; i++) {
-                if (heap[childrenIndexes[i]].compareTo(valueToSwap) < 0) {
-                    indexToSwap = childrenIndexes[i];
-                    valueToSwap = heap[childrenIndexes[i]];
+                int currIndex = childrenIndexes[i];
+                T currValue = heap[currIndex];
+
+                if (currValue.compareTo(valueToSwap) < 0 && currIndex < nelems) {
+                    indexToSwap = currIndex;
+                    valueToSwap = currValue;
                 }
             }
             if (heap[index].compareTo(valueToSwap) <= 0) {
