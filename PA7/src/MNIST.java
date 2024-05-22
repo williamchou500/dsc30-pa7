@@ -95,12 +95,12 @@ public class MNIST {
      */
     public static DataHolder[] getClosestMatches(float[] image, int k) {
         DataHolder[] data = new DataHolder[NUM_TRAIN];
-        return data;
-        //for (int i = 0; i < NUM_TRAIN; i++) {
-          //  data[i] = totalDist(TRAIN_IMAGES[i], image);
-        //}
+        for (int i = 0; i < NUM_TRAIN; i++) {
+            float[] trainImage = TRAIN_IMAGES[i];
+            data[i] = new DataHolder(TRAIN_LABELS[i], totalDist(trainImage, image), trainImage);
+        }
 
-        //data = data.sort;
+        return data;
     }
 
     /**
