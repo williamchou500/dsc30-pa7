@@ -80,7 +80,7 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
 
     @Override
     public T remove() throws NoSuchElementException {
-        if (this.size() == 0) {
+        if (nelems == 0) {
             throw new NoSuchElementException();
         } else {
             T output = heap[0];
@@ -169,19 +169,21 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
 
     private void trickleDown(int index) {
         int[] childrenIndexes = this.children(index);
+
         int indexToSwap = childrenIndexes[0];
-        T valueToSwap = heap[childrenIndexes[0]];
 
         if (indexToSwap >= nelems) {
             return;
         }
+
+        T valueToSwap = heap[childrenIndexes[0]];
 
         if (isMaxHeap) {
             for (int i = 1; i < d; i++) {
                 int currIndex = childrenIndexes[i];
                 T currValue = heap[currIndex];
 
-                if (currValue.compareTo(valueToSwap) > 0 && currIndex < nelems) {
+                if (currIndex < nelems && currValue.compareTo(valueToSwap) > 0) {
                     indexToSwap = currIndex;
                     valueToSwap = currValue;
                 }
@@ -200,7 +202,7 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
                 int currIndex = childrenIndexes[i];
                 T currValue = heap[currIndex];
 
-                if (currValue.compareTo(valueToSwap) < 0 && currIndex < nelems) {
+                if (currIndex < nelems && currValue.compareTo(valueToSwap) < 0) {
                     indexToSwap = currIndex;
                     valueToSwap = currValue;
                 }

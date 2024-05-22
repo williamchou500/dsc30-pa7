@@ -88,27 +88,40 @@ class dHeapTest {
 
     @Test
     public void RemoveTest2() {
-        dHeap test = new dHeap();
+        dHeap test = new dHeap(2, 10, false);
         test.add(5);
-        test.add(111);
-        test.add(5);
+        test.add(151);
+        test.add(3);
         test.add(111);
 
-        assertEquals(111, test.remove());
-        assertEquals(111, test.remove());
+        assertEquals(3, test.remove());
         assertEquals(5, test.remove());
-        assertEquals(5, test.remove());
+        assertEquals(111, test.remove());
+        assertEquals(151, test.remove());
     }
 
     @Test
     public void RemoveTest3() {
-        dHeap test = new dHeap(2, 1, true);
+        dHeap test = new dHeap(2, 3, true);
 
         for (int i = 0; i < 1000; i++) {
             test.add(i);
         }
 
         for (int i = 999; i >= 0; i--) {
+            assertEquals(i, test.remove());
+        }
+    }
+
+    @Test
+    public void RemoveTest4() {
+        dHeap test = new dHeap(2, 10, false);
+
+        for (int i = 0; i < 1000; i++) {
+            test.add(i);
+        }
+
+        for (int i = 0; i < 5; i++) {
             assertEquals(i, test.remove());
         }
     }
