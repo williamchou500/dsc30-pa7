@@ -1,6 +1,6 @@
 /*
- * Name: TODO
- * PID:  TODO
+ * Name: William Chou
+ * PID:  A17830823
  */
 
 import java.io.*;
@@ -10,13 +10,13 @@ import java.util.zip.GZIPInputStream;
 /**
  * Implementation of KNN using MyPriorityQueue on the MNIST dataset
  *
- * @author TODO
- * @since TODO
+ * @author William Chou
+ * @since A17830823
  */
 
 public class MNIST {
 
-    public static final int NUM_TEST = 1_000;   // can be up to 10k
+    public static final int NUM_TEST = 100;   // can be up to 10k
     // ^ recommended to change to 100 temporarily
     public static final int NUM_TRAIN = 60_000; // can be up to 60k
 
@@ -58,8 +58,13 @@ public class MNIST {
          */
         @Override
         public int compareTo(DataHolder d) {
-            // TODO
-            return 0;
+            if (priority > d.priority) {
+                return 1;
+            } else if (priority < d.priority) {
+                return -1;
+            } else {
+                return 0;
+            }
         }
     }
 
@@ -70,8 +75,16 @@ public class MNIST {
      * @return the Euclidean distance between img1 and img2
      */
     public static float totalDist(float[] img1, float[] img2) throws IllegalArgumentException {
-        // TODO
-        return 0f;
+        if (img1.length != img2.length) {
+            throw new IllegalArgumentException();
+        }
+
+        float output = 0;
+
+        for (int i = 0; i < img1.length; i++) {
+            output += (img1[i] - img2[i]) * (img1[i] - img2[i]);
+        }
+        return output;
     }
 
     /**
@@ -81,8 +94,13 @@ public class MNIST {
      * @return an array of DataHolders containing the k closest neighbors to image
      */
     public static DataHolder[] getClosestMatches(float[] image, int k) {
-        // TODO
-        return null;
+        DataHolder[] data = new DataHolder[NUM_TRAIN];
+        return data;
+        //for (int i = 0; i < NUM_TRAIN; i++) {
+          //  data[i] = totalDist(TRAIN_IMAGES[i], image);
+        //}
+
+        //data = data.sort;
     }
 
     /**

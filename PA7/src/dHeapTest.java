@@ -6,6 +6,43 @@ import java.util.NoSuchElementException;
 class dHeapTest {
 
     @Test
+    public void ConstructorTest1() {
+        dHeap test = new dHeap();
+
+        assertEquals(0, test.size());
+
+        test.add(1);
+        test.add(2);
+
+        assertEquals(2, test.element());
+
+    }
+
+    @Test
+    public void ConstructorTest2() {
+        dHeap test = new dHeap();
+
+        assertEquals(0, test.size());
+
+        test.add(1);
+        test.add(2);
+
+        assertEquals(2, test.element());
+    }
+
+    @Test
+    public void ConstructorTest3() {
+        dHeap test = new dHeap(6, 20, false);
+
+        assertEquals(0, test.size());
+
+        test.add(1);
+        test.add(2);
+
+        assertEquals(1, test.element());
+    }
+
+    @Test
     public void SizeTest1() {
         dHeap test = new dHeap();
         test.add(50);
