@@ -16,7 +16,7 @@ import java.util.zip.GZIPInputStream;
 
 public class MNIST {
 
-    public static final int NUM_TEST = 100;   // can be up to 10k
+    public static final int NUM_TEST = 10_000;   // can be up to 10k
     // ^ recommended to change to 100 temporarily
     public static final int NUM_TRAIN = 60_000; // can be up to 60k
 
