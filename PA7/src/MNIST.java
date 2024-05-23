@@ -94,13 +94,20 @@ public class MNIST {
      * @return an array of DataHolders containing the k closest neighbors to image
      */
     public static DataHolder[] getClosestMatches(float[] image, int k) {
-        DataHolder[] data = new DataHolder[NUM_TRAIN];
+        DataHolder[] output = new DataHolder[k];
+        MyPriorityQueue data = new MyPriorityQueue(NUM_TRAIN);
         for (int i = 0; i < NUM_TRAIN; i++) {
-            float[] trainImage = TRAIN_IMAGES[i];
-            data[i] = new DataHolder(TRAIN_LABELS[i], totalDist(trainImage, image), trainImage);
+            float[] trainingImage = TRAIN_IMAGES[i];
+            DataHolder input = new DataHolder(
+                    TRAIN_LABELS[i], totalDist(trainingImage, image), trainingImage);
+            data.offer(input);
         }
 
-        return data;
+        for (int i = 0; i < k; i++) {
+            output[i] = (DataHolder) data.poll();
+        }
+
+        return output;
     }
 
     /**
@@ -110,8 +117,23 @@ public class MNIST {
      * @param closestMatches the array of DataHolders containing the k closest matches
      */
     public static int predict(DataHolder[] closestMatches) {
-        // TODO
-        return 0;
+        int[] counter = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+        for (int i = 0; i < closestMatches.length; i++) {
+            counter[closestMatches[i].label] += 1;
+        }
+
+        int mostPopular = 0;
+        int mostPopularCount = counter[0];
+
+        for (int i = 0; i < counter.length; i++) {
+            if (mostPopularCount < counter[i]) {
+                mostPopular = i;
+                mostPopularCount = counter[i];
+            }
+        }
+
+        return mostPopular;
     }
 
     // you can ignore the rest of this file :)
