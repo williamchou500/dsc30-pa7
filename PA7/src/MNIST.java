@@ -73,6 +73,7 @@ public class MNIST {
      * @param img1 the first array
      * @param img2 the second array
      * @return the Euclidean distance between img1 and img2
+     * @throws IllegalArgumentException if the size of the input arrays are different
      */
     public static float totalDist(float[] img1, float[] img2) throws IllegalArgumentException {
         if (img1.length != img2.length) {
@@ -115,6 +116,7 @@ public class MNIST {
      * You may assume k < n (amount of training data)
      *
      * @param closestMatches the array of DataHolders containing the k closest matches
+     * @return the most popular number
      */
     public static int predict(DataHolder[] closestMatches) {
         int[] counter = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};

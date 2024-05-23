@@ -43,6 +43,7 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
      * Initializes a binary max heap with a given initial capacity.
      *
      * @param heapSize The initial capacity of the heap.
+     * @throws IllegalArgumentException if an invalid size is input
      */
     @SuppressWarnings("unchecked")
     public dHeap(int heapSize) {
@@ -63,21 +64,35 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
      * @param d         The number of child nodes each node in the heap should have.
      * @param heapSize  The initial capacity of the heap.
      * @param isMaxHeap indicates whether the heap should be max or min
-     * @throws IllegalArgumentException if d is less than one.
+     * @throws IllegalArgumentException if d is less than one or an invalid size is input.
      */
     @SuppressWarnings("unchecked")
     public dHeap(int d, int heapSize, boolean isMaxHeap) throws IllegalArgumentException {
+        if (d < 1 || heapSize <= 0) {
+            throw new IllegalArgumentException();
+        }
+
         this.d = d;
         this.isMaxHeap = isMaxHeap;
         this.heapSize = heapSize;
         heap = (T[]) new Comparable[heapSize];
     }
 
+    /**
+     * returns the size of the heap
+     * @return int
+     */
     @Override
     public int size() {
         return nelems;
     }
 
+    /**
+     * removes and returns the root element of the heap and reorganizes it
+     *
+     * @return element that was at the root of the heap
+     * @throws NoSuchElementException when the heap is empty
+     */
     @Override
     public T remove() throws NoSuchElementException {
         if (nelems == 0) {
@@ -93,6 +108,12 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
         }
     }
 
+    /**
+     * adds an element to the heap and modifies it so it is still a max/min heap
+     *
+     * @param item The element to add.
+     * @throws NullPointerException if the element added is null
+     */
     @Override
     public void add(T item) throws NullPointerException {
         if (item == null) {
@@ -108,25 +129,46 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
     }
 
     @SuppressWarnings("unchecked")
+    /**
+     * removes all elements from the heap
+     */
     @Override
     public void clear() {
         heap = (T[]) new Comparable[heapSize];
         nelems = 0;
     }
 
+    /**
+     * reterns the first element of the heap
+     *
+     * @return element at the root of the heap
+     * @throws NoSuchElementException when the heap is empty
+     */
     @Override
     public T element() throws NoSuchElementException {
-        if (this.size() == 0) {
+        if (nelems == 0) {
             throw new NoSuchElementException();
         } else {
             return heap[0];
         }
     }
 
+    /**
+     * returns the index of the parent
+     *
+     * @param index index whose parents you want to find
+     * @return int
+     */
     private int parent(int index) {
         return (index - 1) / d;
     }
 
+    /**
+     * returns all the children of an input index in an array
+     *
+     * @param index index whose children you want to find
+     * @return int array
+     */
     private int[] children(int index) {
         int[] children = new int[d];
 
@@ -136,6 +178,11 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
         return children;
     }
 
+    /**
+     * compares value at an index with its parent and swaps them if needed
+     *
+     * @param index index to bubble up
+     */
     private void bubbleUp(int index) {
         int parent = this.parent(index);
         T temp;
@@ -167,6 +214,11 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
         }
     }
 
+    /**
+     * compares value at an index with its children and makes a swap if necessary
+     *
+     * @param index index to trickle down
+     */
     private void trickleDown(int index) {
         int[] childrenIndexes = this.children(index);
 
@@ -220,6 +272,9 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
     }
 
     @SuppressWarnings("unchecked")
+    /**
+     * doubles the size of the heap when max capacity is reached
+     */
     private void resize() {
         heapSize = heapSize * TO_DOUBLE;
         T[] temp = (T[]) new Comparable[heapSize];

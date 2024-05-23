@@ -43,6 +43,11 @@ class dHeapTest {
     }
 
     @Test
+    public void ConstructorTestException() {
+        assertThrows(IllegalArgumentException.class, () -> {dHeap a = new dHeap<>(0, 1, false);});
+    }
+
+    @Test
     public void SizeTest1() {
         dHeap test = new dHeap();
         test.add(50);

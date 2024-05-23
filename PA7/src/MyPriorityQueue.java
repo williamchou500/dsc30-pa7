@@ -79,6 +79,8 @@ public class MyPriorityQueue<T extends Comparable<? super T>> {
 
     /**
      * Return true is the queue is empty, false otherwise
+     *
+     * @return true if the queue is empty and false otherwise
      */
     public boolean isEmpty() {
         return pQueue.size() == 0;
