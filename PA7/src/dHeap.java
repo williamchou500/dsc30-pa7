@@ -128,10 +128,10 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
         }
     }
 
-    @SuppressWarnings("unchecked")
     /**
      * removes all elements from the heap
      */
+    @SuppressWarnings("unchecked")
     @Override
     public void clear() {
         heap = (T[]) new Comparable[heapSize];
@@ -271,10 +271,10 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
         }
     }
 
-    @SuppressWarnings("unchecked")
     /**
      * doubles the size of the heap when max capacity is reached
      */
+    @SuppressWarnings("unchecked")
     private void resize() {
         heapSize = heapSize * TO_DOUBLE;
         T[] temp = (T[]) new Comparable[heapSize];

@@ -16,13 +16,15 @@ public class MyPriorityQueue<T extends Comparable<? super T>> {
 
     private dHeap<T> pQueue;
 
+    private static final int DESIRED_D_VAL = 4;
+
     /**
      * Constructor that creates a new priority queue
      *
      * @param initialSize the given size
      */
     public MyPriorityQueue(int initialSize) {
-        pQueue = new dHeap(4, initialSize, false);
+        pQueue = new dHeap(DESIRED_D_VAL, initialSize, false);
     }
 
     /**
@@ -85,5 +87,4 @@ public class MyPriorityQueue<T extends Comparable<? super T>> {
     public boolean isEmpty() {
         return pQueue.size() == 0;
     }
-
 }

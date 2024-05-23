@@ -52,6 +52,9 @@ public class MNIST {
         }
 
         /**
+         * implementation of compareTo for MNIST
+         * compares the priority of 2 DataHolder objects
+         *
          * @param d the other DataHolder that is being compared
          * @return an integer that determines whether priority is lower,
          *         greater, or equal to that of d
