@@ -16,7 +16,7 @@ import java.util.zip.GZIPInputStream;
 
 public class MNIST {
 
-    public static final int NUM_TEST = 10_000;   // can be up to 10k
+    public static final int NUM_TEST = 1_000;   // can be up to 10k
     // ^ recommended to change to 100 temporarily
     public static final int NUM_TRAIN = 60_000; // can be up to 60k
 
@@ -88,7 +88,7 @@ public class MNIST {
         for (int i = 0; i < img1.length; i++) {
             output += (img1[i] - img2[i]) * (img1[i] - img2[i]);
         }
-        return output;
+        return (float) Math.pow(output, 0.5);
     }
 
     /**
