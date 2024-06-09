@@ -173,7 +173,8 @@ public class dHeap<T extends Comparable<? super T>> implements HeapInterface<T> 
         int[] children = new int[d];
 
         for (int i = 0; i < d; i++) {
-            children[i] = index * d + 1 + i;
+            int child = index * d + 1 + i;
+            children[i] = child;
         }
         return children;
     }
