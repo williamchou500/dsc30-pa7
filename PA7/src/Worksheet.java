@@ -11,7 +11,7 @@ public class Worksheet {
         /*
         TODO: replace the values with the heap's array representations
          */
-        int[] output =  new int[]{84, 70, 75, 31, 68, 59, 15, 2, 30, 25, 5, 1};
+        int[] output =  new int[]{84, 75, 59, 31, 70, 5, 15, 2, 30, 25, 68, 1};
         return output;
     }
 
@@ -58,8 +58,8 @@ public class Worksheet {
         output[0] = new int[] {52, 50, 35, 39, 45, 17, 27, 10, 15, 0, 0, 0};
         output[1] = new int[] {100, 50, 35, 52, 45, 17, 27, 10, 15, 15, 39, 0};
         output[2] = new int[] {52, 50, 35, 39, 45, 17, 27, 10, 15, 15, 0, 0};
-        output[3] = new  int[] {88, 50, 35, 72, 45, 17, 27, 10, 15, 15, 34, 52};
-        output[4] = new int[] {39, 25, 35, 10, 15, 17, 15, 0, 0, 0, 0, 0};
+        output[3] = new int[] {88, 50, 35, 72, 45, 17, 27, 10, 15, 15, 39, 52};
+        output[4] = new int[] {39, 27, 35, 10, 15, 17, 15, 0, 0, 0, 0, 0};
 
         return output;
     }
